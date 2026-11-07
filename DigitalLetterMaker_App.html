@@ -1,0 +1,1710 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>رسيل | استوديو الرسائل الرقمية الفاخرة</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts: Amiri, Tajawal, Marhey, Aref Ruqaa -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Marhey:wght@400;600;700&family=Tajawal:wght@300;400;500;700;800&family=Aref+Ruqaa:wght@400;700&display=swap" rel="stylesheet">
+
+    <!-- Tailwind Configuration -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Tajawal', 'sans-serif'],
+                        amiri: ['Amiri', 'serif'],
+                        marhey: ['Marhey', 'cursive'],
+                        ruqaa: ['"Aref Ruqaa"', 'serif'],
+                    },
+                    colors: {
+                        rosegold: {
+                            50: '#fdf7f7',
+                            100: '#faecec',
+                            200: '#f4d8d8',
+                            300: '#ebbbbb',
+                            400: '#de9494',
+                            500: '#c56b78', // Classic Rose Gold
+                            600: '#ad5260',
+                            700: '#8e3e4a',
+                            800: '#753540',
+                            900: '#643039',
+                        },
+                        blush: {
+                            50: '#fff5f7',
+                            100: '#ffe8ec',
+                            200: '#ffd4dc',
+                            300: '#ffafbe',
+                            400: '#fa7992',
+                            500: '#f04e70',
+                        },
+                        gold: {
+                            100: '#fcf8ee',
+                            200: '#f6ecd2',
+                            300: '#ebd8a3',
+                            400: '#ddbf72',
+                            500: '#c5a049',
+                            600: '#9f7e32',
+                        }
+                    },
+                    boxShadow: {
+                        'soft-luxury': '0 12px 35px -8px rgba(197, 107, 120, 0.25)',
+                        'glow': '0 0 25px rgba(222, 148, 148, 0.4)',
+                        'seal': '0 8px 20px rgba(117, 53, 64, 0.35), inset 0 2px 4px rgba(255, 255, 255, 0.4), inset 0 -3px 6px rgba(0,0,0,0.25)',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        :root {
+            --app-bg: #fff5f7;
+        }
+
+        body {
+            background-color: var(--app-bg);
+            background-image: 
+                radial-gradient(at 0% 0%, rgba(254, 226, 226, 0.6) 0px, transparent 50%),
+                radial-gradient(at 100% 100%, rgba(252, 231, 243, 0.7) 0px, transparent 50%),
+                radial-gradient(at 50% 50%, rgba(255, 241, 242, 0.5) 0px, transparent 100%);
+            background-attachment: fixed;
+            -webkit-tap-highlight-color: transparent;
+            overscroll-behavior: none;
+            font-family: 'Tajawal', sans-serif;
+        }
+
+        /* Ensure form fields allow selection & typing smoothly */
+        input, textarea, select {
+            user-select: text !important;
+            -webkit-user-select: text !important;
+        }
+
+        /* Glassmorphism Classes */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            border: 1px solid rgba(255, 230, 235, 0.9);
+        }
+
+        .glass-input {
+            background: rgba(255, 255, 255, 0.95);
+            border: 1.5px solid #f4d8d8;
+            transition: all 0.25s ease;
+        }
+        .glass-input:focus {
+            background: #ffffff;
+            border-color: #c56b78;
+            box-shadow: 0 0 0 3px rgba(197, 107, 120, 0.15);
+            outline: none;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 5px;
+            height: 5px;
+        }
+        ::-webkit-scrollbar-track {
+            background: rgba(253, 242, 248, 0.6);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #de9494;
+            border-radius: 999px;
+        }
+
+        /* 3D Scene in Preview */
+        .scene-container {
+            perspective: 1400px;
+            width: 100%;
+            height: 520px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .card-3d {
+            width: 100%;
+            max-width: 330px;
+            height: 480px;
+            position: relative;
+            transform-style: preserve-3d;
+            border-radius: 24px;
+            box-shadow: 0 20px 50px -15px rgba(173, 82, 96, 0.3);
+        }
+
+        .card-inside-preview {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(170deg, #fffcfd 0%, #fff6f8 100%);
+            border: 2px solid #f4d8d8;
+            border-radius: 24px;
+            padding: 1.5rem 1.25rem;
+            overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .card-cover-preview {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, #fff1f3 0%, #fde2e8 50%, #fbcfe8 100%);
+            border: 3px double #de9494;
+            border-radius: 24px;
+            transform-origin: left center;
+            transform-style: preserve-3d;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.75rem 1.25rem;
+            z-index: 10;
+            cursor: pointer;
+            box-shadow: 6px 0 20px rgba(142, 62, 74, 0.15);
+            transition: transform 0.8s cubic-bezier(0.34, 1.3, 0.64, 1);
+        }
+
+        .card-cover-preview.is-open {
+            transform: rotateY(-180deg) !important;
+            pointer-events: none;
+        }
+
+        .card-cover-preview::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: #fdf7f7;
+            border-radius: 20px;
+            transform: rotateY(180deg) translateZ(1px);
+            backface-visibility: hidden;
+            border: 1px solid #f4d8d8;
+        }
+
+        /* Wax Seal Styling */
+        .wax-seal {
+            width: 72px;
+            height: 72px;
+            border-radius: 50%;
+            background: radial-gradient(circle at 35% 35%, #de828f, #9e3d4c);
+            box-shadow: 0 6px 18px rgba(117, 53, 64, 0.4), inset 0 2px 4px rgba(255,255,255,0.45), inset 0 -3px 6px rgba(0,0,0,0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            cursor: pointer;
+            transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+        .wax-seal:hover {
+            transform: scale(1.06);
+        }
+        .wax-seal-inner {
+            width: 58px;
+            height: 58px;
+            border-radius: 50%;
+            border: 1.5px dashed rgba(255, 230, 235, 0.55);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+    </style>
+</head>
+<body class="text-gray-800 antialiased min-h-screen flex flex-col justify-between selection:bg-rosegold-200 selection:text-rosegold-800">
+
+    <!-- Top App Header -->
+    <header class="sticky top-0 z-40 glass-card border-b border-rosegold-200/70 px-4 py-3 shadow-xs">
+        <div class="max-w-md mx-auto flex items-center justify-between">
+            <div class="flex items-center gap-2.5">
+                <div class="w-10 h-10 rounded-2xl bg-gradient-to-tr from-rosegold-500 to-blush-400 flex items-center justify-center text-white shadow-md shadow-rosegold-500/20">
+                    <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M20.24 12.24a6 6 0 0 0-8.49-8.49L5 10.5V19h8.5z"/>
+                        <line x1="16" y1="8" x2="2" y2="22"/>
+                        <line x1="17.5" y1="15" x2="9" y2="15"/>
+                    </svg>
+                </div>
+                <div>
+                    <h1 class="text-lg font-bold text-rosegold-800 font-marhey leading-tight flex items-center gap-1.5">
+                        رَسِـيـلْ 
+                        <span class="text-xs px-2 py-0.5 rounded-full bg-rosegold-100 text-rosegold-600 font-sans font-medium">الفاخر</span>
+                    </h1>
+                    <p class="text-[11px] text-rosegold-600/80 font-medium">صانع الرسائل التفاعلية الخاصة</p>
+                </div>
+            </div>
+
+            <!-- Quick Template Action Pill -->
+            <button onclick="openPresetsModal()" class="flex items-center gap-1.5 text-xs px-3.5 py-1.5 rounded-full bg-white/95 border border-rosegold-300 text-rosegold-700 font-bold shadow-xs active:scale-95 transition-transform hover:bg-rosegold-50">
+                <svg class="w-3.5 h-3.5 text-rosegold-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/>
+                </svg>
+                <span>نماذج جاهزة</span>
+            </button>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <main class="flex-1 max-w-md w-full mx-auto p-4 pb-28">
+
+        <!-- Navigation Tabs (Pill style for mobile) -->
+        <div class="flex items-center justify-between p-1.5 mb-5 rounded-2xl glass-card shadow-sm border border-rosegold-200">
+            <button onclick="switchTab('cover')" id="tab-btn-cover" class="flex-1 py-2 rounded-xl text-xs font-bold transition-all duration-200 flex items-center justify-center gap-1 bg-rosegold-500 text-white shadow-sm">
+                <span>الغلاف</span>
+            </button>
+
+            <button onclick="switchTab('inside')" id="tab-btn-inside" class="flex-1 py-2 rounded-xl text-xs font-bold transition-all duration-200 flex items-center justify-center gap-1 text-rosegold-700 hover:bg-rosegold-50">
+                <span>محتوى الرسالة</span>
+            </button>
+
+            <button onclick="switchTab('style')" id="tab-btn-style" class="flex-1 py-2 rounded-xl text-xs font-bold transition-all duration-200 flex items-center justify-center gap-1 text-rosegold-700 hover:bg-rosegold-50">
+                <span>الختم واللمسات</span>
+            </button>
+
+            <button onclick="switchTab('preview')" id="tab-btn-preview" class="flex-1 py-2 rounded-xl text-xs font-bold transition-all duration-200 flex items-center justify-center gap-1 text-rosegold-700 hover:bg-rosegold-50">
+                <span>معاينة 3D</span>
+            </button>
+        </div>
+
+        <!-- ============================================== -->
+        <!-- TAB 1: COVER SECTION (الغلاف الخارجي) -->
+        <!-- ============================================== -->
+        <section id="tab-content-cover" class="space-y-4">
+            
+            <div class="glass-card rounded-3xl p-5 shadow-soft-luxury">
+                <div class="flex items-center gap-2 mb-4">
+                    <span class="w-2.5 h-6 bg-gradient-to-b from-rosegold-400 to-rosegold-600 rounded-full inline-block"></span>
+                    <h2 class="text-base font-bold text-rosegold-800">بيانات واجهة الغلاف الخارجي</h2>
+                </div>
+
+                <div class="space-y-3.5">
+                    <div>
+                        <label class="block text-xs font-bold text-rosegold-700 mb-1.5">اسم المهدى إليها / العنوان الرئيسي</label>
+                        <input type="text" id="coverRecipient" value="ليلاس الوردة" placeholder="مثلاً: ليلاس، رفيقة دربي، ندى..." 
+                               oninput="updateLivePreview()"
+                               class="w-full px-4 py-2.5 rounded-xl glass-input text-sm text-gray-800 font-bold focus:ring-2 focus:ring-rosegold-400">
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-bold text-rosegold-700 mb-1.5">عبارة التحية الافتتاحية</label>
+                        <input type="text" id="coverGreeting" value="السلام عليكم ورحمة الله وبركاته .." placeholder="مثلاً: مرحباً يا حبيبتي، صباح الورد..." 
+                               oninput="updateLivePreview()"
+                               class="w-full px-4 py-2.5 rounded-xl glass-input text-sm text-gray-800 focus:ring-2 focus:ring-rosegold-400">
+                    </div>
+
+                    <div>
+                        <div class="flex items-center justify-between mb-1.5">
+                            <label class="text-xs font-bold text-rosegold-700">شروط أو طقوس فتح الرسالة (قائمة الشروط)</label>
+                            <span class="text-[10px] text-rosegold-500 font-medium">بطاقة لطيفة على الغلاف</span>
+                        </div>
+                        <input type="text" id="coverConditionsTitle" value="شروط قراءة الرسالة:" placeholder="عنوان الصندوق" 
+                               oninput="updateLivePreview()"
+                               class="w-full px-4 py-2 rounded-xl glass-input text-xs font-bold text-rosegold-800 mb-2">
+
+                        <div id="conditionsList" class="space-y-2 mb-2">
+                            <!-- Items added dynamically -->
+                        </div>
+
+                        <!-- Add Condition Input Row -->
+                        <div class="flex gap-2">
+                            <input type="text" id="newConditionInput" placeholder="اكتبي شرطاً لطيفاً (مثلاً: ادعيلي من قلبك)" 
+                                   onkeydown="if(event.key==='Enter'){event.preventDefault(); addConditionItem();}"
+                                   class="flex-1 px-3 py-2 rounded-xl glass-input text-xs">
+                            <button type="button" onclick="addConditionItem()" class="px-3.5 py-2 rounded-xl bg-rosegold-500 hover:bg-rosegold-600 text-white text-xs font-bold transition-colors">
+                                + إضافة
+                            </button>
+                        </div>
+
+                        <!-- Quick suggestion chips -->
+                        <div class="flex flex-wrap gap-1.5 mt-2.5">
+                            <button type="button" onclick="quickAddCondition('صلي على النبي ﷺ')" class="text-[11px] px-2.5 py-1 rounded-full bg-rosegold-100/70 hover:bg-rosegold-200 text-rosegold-700 font-medium transition-colors">
+                                🌸 صلي على النبي
+                            </button>
+                            <button type="button" onclick="quickAddCondition('ابتسمي من كل قلبك')" class="text-[11px] px-2.5 py-1 rounded-full bg-rosegold-100/70 hover:bg-rosegold-200 text-rosegold-700 font-medium transition-colors">
+                                ✨ ابتسمي
+                            </button>
+                            <button type="button" onclick="quickAddCondition('جهزي فنجان قهوة رايق')" class="text-[11px] px-2.5 py-1 rounded-full bg-rosegold-100/70 hover:bg-rosegold-200 text-rosegold-700 font-medium transition-colors">
+                                ☕ فنجان قهوتك
+                            </button>
+                            <button type="button" onclick="quickAddCondition('اقرأي بهدوء وروية')" class="text-[11px] px-2.5 py-1 rounded-full bg-rosegold-100/70 hover:bg-rosegold-200 text-rosegold-700 font-medium transition-colors">
+                                🤍 اقرأي بهدوء
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="pt-1">
+                        <label class="block text-xs font-bold text-rosegold-700 mb-1.5">العبارة السفلية على الغلاف</label>
+                        <input type="text" id="coverSubtitle" value="صديقتي وأخت روحي ليلاس 🤍" placeholder="مثلاً: أرق التحيات، لكِ بكل حب..." 
+                               oninput="updateLivePreview()"
+                               class="w-full px-4 py-2.5 rounded-xl glass-input text-sm text-gray-800 focus:ring-2 focus:ring-rosegold-400">
+                    </div>
+                </div>
+            </div>
+
+            <div class="p-3.5 rounded-2xl bg-blush-100/60 border border-blush-200 flex items-start gap-3">
+                <span class="text-rosegold-600 text-lg mt-0.5">💡</span>
+                <p class="text-xs text-rosegold-800 leading-relaxed">
+                    الغلاف مصمم بتقنية 3D واقعية، وعندما تفتحه الصديقة بسحب الشاشة أو النقر على الختم، ينفتح بنعومة بالغة وتتساقط بتلات الورد، <strong>ولن يرجع ليتسكر أبداً</strong> لتقرأ كل سطر براحة تامة.
+                </p>
+            </div>
+
+            <button type="button" onclick="switchTab('inside')" class="w-full py-3 rounded-2xl bg-gradient-to-r from-rosegold-500 to-blush-500 text-white font-bold text-sm shadow-soft-luxury active:scale-[0.98] transition-transform flex items-center justify-center gap-2">
+                <span>التالي: كتابة محتوى الرسالة 👈</span>
+            </button>
+        </section>
+
+        <!-- ============================================== -->
+        <!-- TAB 2: INSIDE LETTER (القسم الداخلي) -->
+        <!-- ============================================== -->
+        <section id="tab-content-inside" class="space-y-4 hidden">
+            
+            <div class="glass-card rounded-3xl p-5 shadow-soft-luxury">
+                <div class="flex items-center gap-2 mb-4">
+                    <span class="w-2.5 h-6 bg-gradient-to-b from-rosegold-400 to-rosegold-600 rounded-full inline-block"></span>
+                    <h2 class="text-base font-bold text-rosegold-800">محتوى ونص الرسالة الداخلي</h2>
+                </div>
+
+                <div class="space-y-4">
+                    <div>
+                        <label class="block text-xs font-bold text-rosegold-700 mb-1.5">العبارة الافتتاحية المميزة (بخط رقعة فاخر)</label>
+                        <input type="text" id="insideOpening" value=".. لقد سررتُ بكل حرفٍ من رسالتكِ وتمنيتُ لو أنها طالت .." 
+                               oninput="updateLivePreview()"
+                               class="w-full px-4 py-2.5 rounded-xl glass-input text-sm text-rosegold-800 font-bold focus:ring-2 focus:ring-rosegold-400">
+                    </div>
+
+                    <div>
+                        <div class="flex items-center justify-between mb-1.5">
+                            <label class="text-xs font-bold text-rosegold-700">نص الرسالة الرئيسي</label>
+                            <span class="text-[10px] text-gray-500 font-medium">يدعم المسافات والفقرات المتعددة</span>
+                        </div>
+                        <textarea id="insideMainBody" rows="7" 
+                                  oninput="updateLivePreview()"
+                                  placeholder="اكتبي مشاعركِ، تفاصيل يومكِ، ذكرياتكما معاً..." 
+                                  class="w-full p-4 rounded-2xl glass-input text-sm text-gray-800 leading-relaxed focus:ring-2 focus:ring-rosegold-400 font-sans"></textarea>
+                    </div>
+
+                    <!-- Special Quote / Song / Memory Block -->
+                    <div class="p-4 rounded-2xl bg-gradient-to-b from-rosegold-50 to-blush-50 border border-rosegold-200">
+                        <div class="flex items-center justify-between mb-2">
+                            <span class="text-xs font-bold text-rosegold-800 flex items-center gap-1.5">
+                                <svg class="w-4 h-4 text-rosegold-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M9 18V5l12-2v13"/>
+                                    <circle cx="6" cy="18" r="3"/>
+                                    <circle cx="18" cy="16" r="3"/>
+                                </svg>
+                                صندوق مميز (أغنية / اقتباس / ذكرى خاصة)
+                            </span>
+                            <label class="relative inline-flex items-center cursor-pointer">
+                                <input type="checkbox" id="includeSongBlock" checked onchange="toggleSongSection()" class="w-4 h-4 text-rosegold-600 rounded">
+                            </label>
+                        </div>
+
+                        <div id="songBlockFields" class="space-y-2 mt-3">
+                            <input type="text" id="insideSongTitle" value="الغناية الخاصة بذكرانا .." placeholder="عنوان الصندوق" 
+                                   oninput="updateLivePreview()"
+                                   class="w-full px-3.5 py-2 rounded-xl glass-input text-xs font-bold text-rosegold-700">
+                            
+                            <input type="text" id="insideSongSubtitle" value="تتذكري لما كنا نغنيها ونضحك من قلبنا؟ قولي ورايي 🤍" placeholder="عبارة تمهيدية خفيفة" 
+                                   oninput="updateLivePreview()"
+                                   class="w-full px-3.5 py-2 rounded-xl glass-input text-xs text-gray-700">
+
+                            <textarea id="insideSongContent" rows="4" placeholder="كلمات الأغنية أو الأبيات الشعرية..." 
+                                      oninput="updateLivePreview()"
+                                      class="w-full p-3 rounded-xl glass-input text-xs text-rosegold-900 leading-relaxed"></textarea>
+                        </div>
+                    </div>
+
+                    <!-- Highlighted Badge -->
+                    <div>
+                        <label class="block text-xs font-bold text-rosegold-700 mb-1.5">شريط عبارة مميزة في المنتصف (وسام محبة)</label>
+                        <input type="text" id="insideBadge" value="« تركتُ قلبي في حارة سعادتنا وأخذتُ سلاح الدعاء لأحميكِ »" 
+                               oninput="updateLivePreview()"
+                               class="w-full px-4 py-2.5 rounded-xl glass-input text-xs text-rosegold-800 font-bold focus:ring-2 focus:ring-rosegold-400">
+                    </div>
+
+                    <!-- Bottom Special Notes -->
+                    <div>
+                        <label class="block text-xs font-bold text-rosegold-700 mb-1.5">ملاحظات ووصايا ختامية لطيفة</label>
+                        <textarea id="insideNotes" rows="3" 
+                                  oninput="updateLivePreview()"
+                                  placeholder="وصايا ختامية..." 
+                                  class="w-full p-3 rounded-xl glass-input text-xs text-gray-700 leading-relaxed"></textarea>
+                    </div>
+
+                    <!-- Closing Signature -->
+                    <div>
+                        <label class="block text-xs font-bold text-rosegold-700 mb-1.5">التوقيع النهائي</label>
+                        <input type="text" id="insideSignature" value="بحبكِ كتير.. ديري بالك على حالك يا روحي 🌸" 
+                               oninput="updateLivePreview()"
+                               class="w-full px-4 py-2.5 rounded-xl glass-input text-sm text-rosegold-800 font-bold focus:ring-2 focus:ring-rosegold-400">
+                    </div>
+                </div>
+            </div>
+
+            <div class="flex gap-2">
+                <button type="button" onclick="switchTab('cover')" class="flex-1 py-3 rounded-2xl glass-card text-rosegold-700 font-bold text-sm hover:bg-rosegold-100 transition-colors">
+                    العودة للغلاف
+                </button>
+                <button type="button" onclick="switchTab('style')" class="flex-2 py-3 px-5 rounded-2xl bg-gradient-to-r from-rosegold-500 to-blush-500 text-white font-bold text-sm shadow-soft-luxury active:scale-[0.98] transition-transform">
+                    التالي: الختم واللمسات 👈
+                </button>
+            </div>
+        </section>
+
+        <!-- ============================================== -->
+        <!-- TAB 3: STYLES, WAX SEAL & AMBIENCE -->
+        <!-- ============================================== -->
+        <section id="tab-content-style" class="space-y-4 hidden">
+            
+            <div class="glass-card rounded-3xl p-5 shadow-soft-luxury">
+                <div class="flex items-center gap-2 mb-4">
+                    <span class="w-2.5 h-6 bg-gradient-to-b from-rosegold-400 to-rosegold-600 rounded-full inline-block"></span>
+                    <h2 class="text-base font-bold text-rosegold-800">تخصيص ختم الشمع الملكي والمظهر</h2>
+                </div>
+
+                <div class="space-y-4">
+                    <!-- Seal Color Theme -->
+                    <div>
+                        <label class="block text-xs font-bold text-rosegold-700 mb-2">لون ختم الشمع وتدرج الغلاف</label>
+                        <div class="grid grid-cols-4 gap-2.5">
+                            <button type="button" onclick="selectTheme('rosegold')" id="theme-btn-rosegold" class="p-2 rounded-2xl border-2 border-rosegold-500 bg-rosegold-50 flex flex-col items-center gap-1.5 transition-all">
+                                <div class="w-7 h-7 rounded-full bg-gradient-to-br from-rosegold-400 to-rosegold-700 shadow-sm"></div>
+                                <span class="text-[11px] font-bold text-rosegold-800">روز قولد</span>
+                            </button>
+
+                            <button type="button" onclick="selectTheme('gold')" id="theme-btn-gold" class="p-2 rounded-2xl border-2 border-transparent hover:border-gold-300 bg-gold-100/50 flex flex-col items-center gap-1.5 transition-all">
+                                <div class="w-7 h-7 rounded-full bg-gradient-to-br from-gold-300 to-gold-600 shadow-sm"></div>
+                                <span class="text-[11px] font-bold text-gold-800">ذهب ملكي</span>
+                            </button>
+
+                            <button type="button" onclick="selectTheme('ruby')" id="theme-btn-ruby" class="p-2 rounded-2xl border-2 border-transparent hover:border-pink-300 bg-pink-50 flex flex-col items-center gap-1.5 transition-all">
+                                <div class="w-7 h-7 rounded-full bg-gradient-to-br from-pink-500 to-rose-900 shadow-sm"></div>
+                                <span class="text-[11px] font-bold text-rose-900">توت ملكي</span>
+                            </button>
+
+                            <button type="button" onclick="selectTheme('lavender')" id="theme-btn-lavender" class="p-2 rounded-2xl border-2 border-transparent hover:border-purple-300 bg-purple-50 flex flex-col items-center gap-1.5 transition-all">
+                                <div class="w-7 h-7 rounded-full bg-gradient-to-br from-purple-300 to-purple-600 shadow-sm"></div>
+                                <span class="text-[11px] font-bold text-purple-900">لافندر</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Seal Motif / Icon -->
+                    <div>
+                        <label class="block text-xs font-bold text-rosegold-700 mb-2">النقش المحفور داخل ختم الشمع</label>
+                        <div class="grid grid-cols-4 gap-2">
+                            <button type="button" onclick="selectSealIcon('rose')" id="seal-icon-rose" class="p-2.5 rounded-xl border-2 border-rosegold-500 bg-white flex flex-col items-center justify-center gap-1 transition-all">
+                                <svg class="w-6 h-6 text-rosegold-600" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+                                </svg>
+                                <span class="text-[10px] font-bold text-rosegold-700">قلب أنيق</span>
+                            </button>
+
+                            <button type="button" onclick="selectSealIcon('flower')" id="seal-icon-flower" class="p-2.5 rounded-xl border-2 border-transparent hover:border-rosegold-300 bg-white flex flex-col items-center justify-center gap-1 transition-all">
+                                <svg class="w-6 h-6 text-rosegold-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M12 22a7 7 0 0 0 7-7c0-2-1-3.9-3-5.5s-3.5-4-4-6.5c-.5 2.5-2 4.9-4 6.5C6 11.1 5 13 5 15a7 7 0 0 0 7 7z"/>
+                                </svg>
+                                <span class="text-[10px] font-bold text-rosegold-700">بتلة ورد</span>
+                            </button>
+
+                            <button type="button" onclick="selectSealIcon('butterfly')" id="seal-icon-butterfly" class="p-2.5 rounded-xl border-2 border-transparent hover:border-rosegold-300 bg-white flex flex-col items-center justify-center gap-1 transition-all">
+                                <svg class="w-6 h-6 text-rosegold-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="m9 12 3-8 3 8"/>
+                                    <path d="M6 14a4 4 0 0 0 6 3 4 4 0 0 0 6-3"/>
+                                    <path d="M4 8a3 3 0 0 1 5 2v4a3 3 0 0 1-5-2V8z"/>
+                                    <path d="M20 8a3 3 0 0 0-5 2v4a3 3 0 0 0 5-2V8z"/>
+                                </svg>
+                                <span class="text-[10px] font-bold text-rosegold-700">فراشة</span>
+                            </button>
+
+                            <button type="button" onclick="selectSealIcon('crown')" id="seal-icon-crown" class="p-2.5 rounded-xl border-2 border-transparent hover:border-rosegold-300 bg-white flex flex-col items-center justify-center gap-1 transition-all">
+                                <svg class="w-6 h-6 text-rosegold-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="m2 4 3 12h14l3-12-6 7-4-7-4 7-6-7zm3 16h14"/>
+                                </svg>
+                                <span class="text-[10px] font-bold text-rosegold-700">تاج ملكي</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Ambient Effects Options -->
+                    <div class="pt-2 border-t border-rosegold-100 space-y-2.5">
+                        <label class="block text-xs font-bold text-rosegold-700">تأثيرات إضافية عند فتح الرسالة</label>
+                        
+                        <div class="flex items-center justify-between p-3 rounded-xl bg-white/70 border border-rosegold-100">
+                            <span class="text-xs font-medium text-gray-700 flex items-center gap-2">
+                                🌸 تساقط بتلات الورد المتطايرة
+                            </span>
+                            <input type="checkbox" id="effectPetals" checked class="w-4 h-4 text-rosegold-600 rounded">
+                        </div>
+
+                        <div class="flex items-center justify-between p-3 rounded-xl bg-white/70 border border-rosegold-100">
+                            <span class="text-xs font-medium text-gray-700 flex items-center gap-2">
+                                🔔 نغمة هادئة رقيقة عند كسر الختم
+                            </span>
+                            <input type="checkbox" id="effectSound" checked class="w-4 h-4 text-rosegold-600 rounded">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <button type="button" onclick="switchTab('preview')" class="w-full py-3 rounded-2xl bg-gradient-to-r from-rosegold-500 to-blush-500 text-white font-bold text-sm shadow-soft-luxury active:scale-[0.98] transition-transform flex items-center justify-center gap-2">
+                <span>مشاهدة المعاينة الحية والتجربة 👁️</span>
+            </button>
+        </section>
+
+        <!-- ============================================== -->
+        <!-- TAB 4: LIVE 3D PREVIEW (المعاينة الحية) -->
+        <!-- ============================================== -->
+        <section id="tab-content-preview" class="space-y-4 hidden">
+            
+            <div class="flex items-center justify-between px-1">
+                <div>
+                    <h2 class="text-sm font-bold text-rosegold-800">المعاينة الحية التفاعلية</h2>
+                    <p class="text-[11px] text-rosegold-600">اضغطي الختم أو اسحبي لليسار لفتحها</p>
+                </div>
+                <button type="button" onclick="resetPreviewCard()" class="text-xs px-3 py-1.5 rounded-full bg-white border border-rosegold-300 text-rosegold-700 font-bold shadow-xs active:scale-95 transition-transform flex items-center gap-1">
+                    <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/></svg>
+                    <span>إعادة إغلاق للمعاينة</span>
+                </button>
+            </div>
+
+            <!-- 3D Scene Viewport -->
+            <div class="scene-container">
+                <div class="card-3d" id="previewCardContainer">
+                    
+                    <!-- THE INSIDE LETTER (Bottom layer) -->
+                    <div class="card-inside-preview text-xs sm:text-sm custom-scroll">
+                        <div class="space-y-4 text-right">
+                            
+                            <!-- Opening Title -->
+                            <p id="prevInsideOpening" class="text-rosegold-700 font-bold font-ruqaa text-sm sm:text-base leading-relaxed text-center pb-2 border-b border-rosegold-200">
+                                .. لقد سررتُ بكل حرفٍ من رسالتكِ وتمنيتُ لو أنها طالت ..
+                            </p>
+
+                            <!-- Body Text -->
+                            <div id="prevInsideBody" class="text-gray-700 leading-relaxed font-sans space-y-2 whitespace-pre-wrap"></div>
+
+                            <!-- Song Block Preview -->
+                            <div id="prevSongBlockWrapper" class="my-4 bg-gradient-to-b from-rosegold-100/70 to-pink-50/80 p-3.5 rounded-2xl border border-rosegold-200 text-center relative">
+                                <h4 id="prevSongTitle" class="font-bold text-rosegold-800 text-xs sm:text-sm mb-1 font-marhey">الغناية الخاصة بذكرانا ..</h4>
+                                <p id="prevSongSubtitle" class="text-[11px] text-rosegold-600 mb-2">تتذكري لما كنا نغنيها ونضحك من قلبنا؟</p>
+                                <div id="prevSongContent" class="text-xs text-rosegold-900 leading-loose whitespace-pre-wrap font-medium"></div>
+                            </div>
+
+                            <!-- Badge Quote -->
+                            <div class="text-center my-3">
+                                <span id="prevInsideBadge" class="inline-block px-3.5 py-1.5 bg-rosegold-100 text-rosegold-800 rounded-full font-bold text-xs shadow-xs">
+                                    « تركتُ قلبي في حارة سعادتنا »
+                                </span>
+                            </div>
+
+                            <!-- Notes -->
+                            <div id="prevInsideNotes" class="bg-pink-100/50 p-3 rounded-xl text-xs text-gray-700 leading-relaxed"></div>
+
+                            <!-- Signature -->
+                            <div class="text-center pt-2">
+                                <p id="prevInsideSignature" class="font-bold text-rosegold-700 text-xs sm:text-sm font-ruqaa">
+                                    بحبكِ كتير.. ديري بالك على حالك 🌸
+                                </p>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <!-- THE COVER (Top interactive layer) -->
+                    <div class="card-cover-preview" id="previewCardCover" onclick="handlePreviewCoverClick()">
+                        
+                        <!-- Top Corner Ornaments -->
+                        <div class="w-full flex justify-between items-center opacity-60 px-1">
+                            <span class="text-sm text-rosegold-500">🌸</span>
+                            <span class="text-[10px] tracking-widest text-rosegold-500 uppercase font-bold">رسالة خاصة</span>
+                            <span class="text-sm text-rosegold-500">🌸</span>
+                        </div>
+
+                        <!-- Mid Content -->
+                        <div class="text-center w-full my-auto">
+                            <h3 id="prevCoverRecipient" class="text-2xl font-bold text-rosegold-700 font-marhey mb-1">ليلاس الوردة</h3>
+                            <p id="prevCoverGreeting" class="text-xs text-gray-700 font-medium mb-3">السلام عليكم ورحمة الله وبركاته ..</p>
+
+                            <!-- Conditions Box -->
+                            <div class="bg-white/70 backdrop-blur-md rounded-2xl p-3.5 border border-white/90 shadow-xs max-w-[240px] mx-auto text-right">
+                                <h5 id="prevCoverConditionsTitle" class="text-xs font-bold text-rosegold-800 border-b border-rosegold-200 pb-1.5 mb-2">شروط قراءة الرسالة:</h5>
+                                <ul id="prevConditionsList" class="space-y-1.5 text-xs text-gray-800 font-medium"></ul>
+                            </div>
+
+                            <p id="prevCoverSubtitle" class="mt-3 text-xs font-bold text-rosegold-700">صديقتي وأخت روحي ليلاس 🤍</p>
+                        </div>
+
+                        <!-- Wax Seal & Swipe Hint -->
+                        <div class="flex flex-col items-center gap-2">
+                            <div class="wax-seal" id="prevWaxSeal">
+                                <div class="wax-seal-inner" id="prevWaxSealIcon"></div>
+                            </div>
+
+                            <div id="prevSwipeHint" class="bg-rosegold-600/90 text-white text-[11px] font-bold px-3 py-1 rounded-full shadow-md flex items-center gap-1.5">
+                                <span>اضغطي الختم لفتح الرسالة</span>
+                                <span class="text-xs">👈</span>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <!-- Export Direct Action Button in Preview -->
+            <div class="pt-2">
+                <button type="button" onclick="generateAndExportLetter()" class="w-full py-3.5 rounded-2xl bg-gradient-to-r from-rosegold-500 via-blush-500 to-rosegold-600 text-white font-bold text-base shadow-soft-luxury active:scale-[0.98] transition-transform flex items-center justify-center gap-2">
+                    <svg class="w-5 h-5 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                        <polyline points="7 10 12 15 17 10"/>
+                        <line x1="12" y1="15" x2="12" y2="3"/>
+                    </svg>
+                    <span>توليد ملف الرسالة وإرسالها عبر واتساب 💌</span>
+                </button>
+            </div>
+
+        </section>
+
+    </main>
+
+    <!-- Bottom Mobile Sticky Bar -->
+    <footer class="fixed bottom-0 left-0 right-0 z-30 glass-card border-t border-rosegold-200/80 px-4 py-3 shadow-lg">
+        <div class="max-w-md mx-auto flex items-center gap-2">
+            <button type="button" onclick="switchTab('preview')" class="py-2.5 px-4 rounded-xl glass-input text-rosegold-800 font-bold text-xs flex items-center gap-1 hover:bg-rosegold-100 transition-colors">
+                <svg class="w-4 h-4 text-rosegold-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/>
+                    <circle cx="12" cy="12" r="3"/>
+                </svg>
+                <span>معاينة</span>
+            </button>
+
+            <button type="button" onclick="generateAndExportLetter()" class="flex-1 py-3 px-4 rounded-xl bg-gradient-to-r from-rosegold-500 to-blush-500 text-white font-bold text-xs sm:text-sm shadow-soft-luxury active:scale-[0.98] transition-transform flex items-center justify-center gap-2">
+                <svg class="w-4 h-4 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                    <polyline points="7 10 12 15 17 10"/>
+                    <line x1="12" y1="15" x2="12" y2="3"/>
+                </svg>
+                <span>توليد ملف الرسالة (HTML) 🎁</span>
+            </button>
+        </div>
+    </footer>
+
+    <!-- PRESETS MODAL -->
+    <div id="presetsModal" class="fixed inset-0 z-50 bg-black/40 backdrop-blur-xs flex items-center justify-center p-4 hidden">
+        <div class="bg-white rounded-3xl max-w-sm w-full p-5 shadow-2xl border border-rosegold-200 max-h-[85vh] overflow-y-auto">
+            <div class="flex items-center justify-between pb-3 border-b border-rosegold-100 mb-3">
+                <h3 class="text-sm font-bold text-rosegold-800 font-marhey">اختاري قالباً جاهزاً بلمسة واحدة</h3>
+                <button type="button" onclick="closePresetsModal()" class="text-gray-400 hover:text-gray-600 text-lg">&times;</button>
+            </div>
+
+            <div class="space-y-2.5">
+                <button type="button" onclick="applyPreset('friend')" class="w-full text-right p-3 rounded-2xl border border-rosegold-200 hover:border-rosegold-400 bg-rosegold-50/50 hover:bg-rosegold-50 transition-colors">
+                    <span class="text-xs font-bold text-rosegold-800 block mb-1">💌 رسالة الصديقة الوفية (مثل الملف الأصلي)</span>
+                    <p class="text-[11px] text-gray-600">رسالة دافئة مليئة بالاشتياق، الأحاديث اليومية والذكريات الجميلة.</p>
+                </button>
+
+                <button type="button" onclick="applyPreset('celebrate')" class="w-full text-right p-3 rounded-2xl border border-rosegold-200 hover:border-rosegold-400 bg-rosegold-50/50 hover:bg-rosegold-50 transition-colors">
+                    <span class="text-xs font-bold text-rosegold-800 block mb-1">✨ رسالة تهنئة وفرحة خاصة</span>
+                    <p class="text-[11px] text-gray-600">تهنئة بنجاح، تخرج أو مناسبة سعيدة مع كلمات فخر ومحبة لا تنتهي.</p>
+                </button>
+
+                <button type="button" onclick="applyPreset('gratitude')" class="w-full text-right p-3 rounded-2xl border border-rosegold-200 hover:border-rosegold-400 bg-rosegold-50/50 hover:bg-rosegold-50 transition-colors">
+                    <span class="text-xs font-bold text-rosegold-800 block mb-1">🤍 رسالة شكر وامتنان من القلب</span>
+                    <p class="text-[11px] text-gray-600">عبارات شكر وتقدير لوجود إنسانة عزيزة ودعمها الدائم لكِ في كل خطوة.</p>
+                </button>
+            </div>
+
+            <button type="button" onclick="closePresetsModal()" class="w-full mt-4 py-2.5 rounded-xl glass-input text-xs font-bold text-gray-600">
+                إلغاء
+            </button>
+        </div>
+    </div>
+
+    <!-- EXPORT & WHATSAPP MODAL -->
+    <div id="exportModal" class="fixed inset-0 z-50 bg-black/45 backdrop-blur-xs flex items-center justify-center p-4 hidden">
+        <div class="bg-white rounded-3xl max-w-sm w-full p-6 shadow-2xl border border-rosegold-200 text-center">
+            
+            <div class="w-14 h-14 mx-auto rounded-full bg-rosegold-100 flex items-center justify-center text-rosegold-600 mb-3 shadow-inner">
+                <svg class="w-8 h-8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+                    <polyline points="22 4 12 14.01 9 11.01"/>
+                </svg>
+            </div>
+
+            <h3 class="text-base font-bold text-rosegold-800 font-marhey mb-1">تم تجهيز رسالتكِ الفاخرة! 🎁</h3>
+            <p class="text-xs text-gray-600 mb-4">الملف جاهز الآن بصيغة HTML التفاعلية لترسليه إلى صديقتكِ وتفتحه فوراً عبر متصفح الهاتف.</p>
+
+            <div class="p-3 rounded-2xl bg-rosegold-50 border border-rosegold-200 mb-4 text-right">
+                <p class="text-[11px] text-gray-500 font-medium mb-1">اسم الملف المولّد:</p>
+                <p id="generatedFileNameLabel" class="text-xs font-bold text-rosegold-800 font-mono" dir="ltr">special_letter.html</p>
+            </div>
+
+            <div class="space-y-2.5">
+                <button type="button" onclick="downloadHtmlFileAction()" class="w-full py-3 rounded-2xl bg-gradient-to-r from-rosegold-500 to-blush-500 text-white font-bold text-xs sm:text-sm shadow-md active:scale-95 transition-transform flex items-center justify-center gap-2">
+                    <svg class="w-4 h-4 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                        <polyline points="7 10 12 15 17 10"/>
+                        <line x1="12" y1="15" x2="12" y2="3"/>
+                    </svg>
+                    <span>تحميل الملف إلى هاتفكِ 📥</span>
+                </button>
+
+                <button type="button" onclick="shareDirectlyToWhatsApp()" class="w-full py-3 rounded-2xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs sm:text-sm shadow-md active:scale-95 transition-transform flex items-center justify-center gap-2">
+                    <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24">
+                        <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/>
+                    </svg>
+                    <span>إرسال واتساب مع نص الدعوة 📲</span>
+                </button>
+
+                <button type="button" onclick="closeExportModal()" class="w-full py-2 text-xs font-medium text-gray-500 hover:text-gray-700">
+                    إغلاق
+                </button>
+            </div>
+
+            <div class="mt-4 pt-3 border-t border-rosegold-100 text-right">
+                <p class="text-[10px] text-rosegold-700 font-bold mb-1">📌 طريقة الإرسال بالواتساب:</p>
+                <p class="text-[10px] text-gray-600 leading-normal">
+                    1. اضغطي "تحميل الملف".<br>
+                    2. في واتساب، اضغطي علامة المرفقات واختاري (مستند / Document) وأرسلي الملف لتفتحه صديقتك فوراً بنقرة واحدة!
+                </p>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Application Core Script -->
+    <script>
+        // Use string concatenation for scripts inside template literals so the HTML parser does not break
+        const S_OPEN = '<' + 'script>';
+        const S_CLOSE = '<' + '/script>';
+        const S_SRC_TAILWIND = '<' + 'script src="https://cdn.tailwindcss.com">' + S_CLOSE;
+
+        const state = {
+            currentTab: 'cover',
+            conditions: [
+                'صلي على النبي ﷺ',
+                'ادعيلي بظهر الغيب دعوة حلوة',
+                'اقرأي بروقان وهدوء'
+            ],
+            theme: 'rosegold',
+            sealIcon: 'rose',
+            lastGeneratedHtml: '',
+            lastFileName: 'interactive_letter.html'
+        };
+
+        // DOM Ready Init
+        document.addEventListener('DOMContentLoaded', () => {
+            renderConditionsList();
+            initDefaultBodyContent();
+            updateLivePreview();
+        });
+
+        function initDefaultBodyContent() {
+            const defaultText = `أهلاً يا قطعة من روحي.. أردتُ أن أكتب لكِ هذه الرسالة بطريقة مختلفة واستثنائية تليق بكِ وبمعزتكِ بقلبي.
+
+أولاً لأقول لكِ أن وجودكِ في أيامي نعمة أحمد الله عليها دائماً، ولكي تبقى هذه الكلمات بيننا ذكرى ناعمة نعود إليها كلما اشتقنا لتفاصيلنا الجميلة.
+
+أشتاقُ لضحكاتنا العفوية، لأحاديثنا الطويلة التي لا تنتهي حتى منتصف الليل، ولتلك اللحظات التي لا يفهم سرها أحدٌ سوانا. أدعو الله أن يحفظكِ أينما كنتِ وأن يجعل أيامكِ القادمة كلها توفيقاً وفرحاً وبياضاً يشبه قلبكِ النقي.`;
+            document.getElementById('insideMainBody').value = defaultText;
+
+            const defaultSong = `بدو ما يحب الولد أمو ليش بيحبا؟\nبدو بيحب الولد بس مت عمو زازا بدو بحبا..\nبدو بيقلا الولد لأمو ماني بدو بيقلا..\nبدو بيقلا الولد لمت عمو زازا حاضر بدو بيقلا 🤍`;
+            document.getElementById('insideSongContent').value = defaultSong;
+
+            const defaultNotes = `• اكتبي لي رأيكِ وشعوركِ فور أن تنتهي من القراءة.\n• احتفظي بهذا الملف الرقيق على هاتفكِ ليكون ذكرى طيبة بيننا دوماً.`;
+            document.getElementById('insideNotes').value = defaultNotes;
+        }
+
+        // Tab Switching Logic
+        function switchTab(tabId) {
+            state.currentTab = tabId;
+            const tabs = ['cover', 'inside', 'style', 'preview'];
+            
+            tabs.forEach(t => {
+                const btn = document.getElementById(`tab-btn-${t}`);
+                const content = document.getElementById(`tab-content-${t}`);
+                if (btn && content) {
+                    if (t === tabId) {
+                        btn.className = 'flex-1 py-2 rounded-xl text-xs font-bold transition-all duration-200 flex items-center justify-center gap-1 bg-rosegold-500 text-white shadow-sm';
+                        content.classList.remove('hidden');
+                    } else {
+                        btn.className = 'flex-1 py-2 rounded-xl text-xs font-bold transition-all duration-200 flex items-center justify-center gap-1 text-rosegold-700 hover:bg-rosegold-50';
+                        content.classList.add('hidden');
+                    }
+                }
+            });
+
+            if (tabId === 'preview') {
+                updateLivePreview();
+            }
+        }
+
+        // Conditions List Management
+        function renderConditionsList() {
+            const listEl = document.getElementById('conditionsList');
+            if (!listEl) return;
+            listEl.innerHTML = '';
+            
+            state.conditions.forEach((cond, index) => {
+                const div = document.createElement('div');
+                div.className = 'flex items-center justify-between p-2 rounded-xl bg-white/80 border border-rosegold-100 text-xs text-gray-800 shadow-2xs';
+                div.innerHTML = `
+                    <div class="flex items-center gap-2">
+                        <span class="text-rosegold-500">🌸</span>
+                        <span>${escapeHtml(cond)}</span>
+                    </div>
+                    <button type="button" onclick="removeConditionItem(${index})" class="text-red-400 hover:text-red-600 font-bold px-2 py-0.5 text-sm">&times;</button>
+                `;
+                listEl.appendChild(div);
+            });
+            updateLivePreview();
+        }
+
+        function addConditionItem() {
+            const input = document.getElementById('newConditionInput');
+            if (!input) return;
+            const val = input.value.trim();
+            if (val) {
+                state.conditions.push(val);
+                input.value = '';
+                renderConditionsList();
+            }
+        }
+
+        function quickAddCondition(text) {
+            if (!state.conditions.includes(text)) {
+                state.conditions.push(text);
+                renderConditionsList();
+            }
+        }
+
+        function removeConditionItem(index) {
+            state.conditions.splice(index, 1);
+            renderConditionsList();
+        }
+
+        function toggleSongSection() {
+            const chk = document.getElementById('includeSongBlock');
+            const fields = document.getElementById('songBlockFields');
+            if (chk && fields) {
+                fields.style.display = chk.checked ? 'block' : 'none';
+            }
+            updateLivePreview();
+        }
+
+        // Theme and Seal selection
+        function selectTheme(themeName) {
+            state.theme = themeName;
+            ['rosegold', 'gold', 'ruby', 'lavender'].forEach(t => {
+                const btn = document.getElementById(`theme-btn-${t}`);
+                if (btn) {
+                    if (t === themeName) {
+                        btn.classList.remove('border-transparent');
+                        btn.classList.add('border-rosegold-500', 'scale-105');
+                    } else {
+                        btn.classList.remove('border-rosegold-500', 'scale-105');
+                        btn.classList.add('border-transparent');
+                    }
+                }
+            });
+            updatePreviewWaxSealLook();
+        }
+
+        function selectSealIcon(iconName) {
+            state.sealIcon = iconName;
+            ['rose', 'flower', 'butterfly', 'crown'].forEach(i => {
+                const btn = document.getElementById(`seal-icon-${i}`);
+                if (btn) {
+                    if (i === iconName) {
+                        btn.classList.remove('border-transparent');
+                        btn.classList.add('border-rosegold-500', 'scale-105');
+                    } else {
+                        btn.classList.remove('border-rosegold-500', 'scale-105');
+                        btn.classList.add('border-transparent');
+                    }
+                }
+            });
+            updatePreviewWaxSealLook();
+        }
+
+        function getSealSvg(icon) {
+            if (icon === 'flower') {
+                return '<svg class="w-7 h-7 text-white/90" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22a7 7 0 0 0 7-7c0-2-1-3.9-3-5.5s-3.5-4-4-6.5c-.5 2.5-2 4.9-4 6.5C6 11.1 5 13 5 15a7 7 0 0 0 7 7z"/></svg>';
+            } else if (icon === 'butterfly') {
+                return '<svg class="w-7 h-7 text-white/90" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 12 3-8 3 8"/><path d="M6 14a4 4 0 0 0 6 3 4 4 0 0 0 6-3"/><path d="M4 8a3 3 0 0 1 5 2v4a3 3 0 0 1-5-2V8z"/><path d="M20 8a3 3 0 0 0-5 2v4a3 3 0 0 0 5-2V8z"/></svg>';
+            } else if (icon === 'crown') {
+                return '<svg class="w-7 h-7 text-white/90" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m2 4 3 12h14l3-12-6 7-4-7-4 7-6-7zm3 16h14"/></svg>';
+            }
+            return '<svg class="w-7 h-7 text-white/90" viewBox="0 0 24 24" fill="currentColor"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>';
+        }
+
+        function updatePreviewWaxSealLook() {
+            const seal = document.getElementById('prevWaxSeal');
+            const iconContainer = document.getElementById('prevWaxSealIcon');
+            if (iconContainer) iconContainer.innerHTML = getSealSvg(state.sealIcon);
+            if (!seal) return;
+
+            if (state.theme === 'gold') {
+                seal.style.background = 'radial-gradient(circle at 35% 35%, #ebcb76, #9f7e32)';
+            } else if (state.theme === 'ruby') {
+                seal.style.background = 'radial-gradient(circle at 35% 35%, #e11d48, #6d071a)';
+            } else if (state.theme === 'lavender') {
+                seal.style.background = 'radial-gradient(circle at 35% 35%, #c084fc, #581c87)';
+            } else {
+                seal.style.background = 'radial-gradient(circle at 35% 35%, #de828f, #9e3d4c)';
+            }
+        }
+
+        // Live Preview Synchronization
+        function updateLivePreview() {
+            const getVal = (id) => (document.getElementById(id) ? document.getElementById(id).value : '');
+            
+            const prevCoverRecipient = document.getElementById('prevCoverRecipient');
+            if (prevCoverRecipient) prevCoverRecipient.innerText = getVal('coverRecipient') || 'اسم المستلمة';
+
+            const prevCoverGreeting = document.getElementById('prevCoverGreeting');
+            if (prevCoverGreeting) prevCoverGreeting.innerText = getVal('coverGreeting') || '';
+
+            const prevCoverConditionsTitle = document.getElementById('prevCoverConditionsTitle');
+            if (prevCoverConditionsTitle) prevCoverConditionsTitle.innerText = getVal('coverConditionsTitle') || 'شروط قراءة الرسالة:';
+
+            const prevCoverSubtitle = document.getElementById('prevCoverSubtitle');
+            if (prevCoverSubtitle) prevCoverSubtitle.innerText = getVal('coverSubtitle') || '';
+
+            const prevList = document.getElementById('prevConditionsList');
+            if (prevList) {
+                prevList.innerHTML = '';
+                state.conditions.forEach(cond => {
+                    const li = document.createElement('li');
+                    li.className = 'flex items-center gap-1.5';
+                    li.innerHTML = '<span class="text-rosegold-500 text-sm">🌸</span> <span>' + escapeHtml(cond) + '</span>';
+                    prevList.appendChild(li);
+                });
+            }
+
+            const prevInsideOpening = document.getElementById('prevInsideOpening');
+            if (prevInsideOpening) prevInsideOpening.innerText = getVal('insideOpening') || '';
+
+            const prevInsideBody = document.getElementById('prevInsideBody');
+            if (prevInsideBody) prevInsideBody.innerText = getVal('insideMainBody') || '';
+
+            const prevInsideBadge = document.getElementById('prevInsideBadge');
+            if (prevInsideBadge) prevInsideBadge.innerText = getVal('insideBadge') || '';
+
+            const prevInsideNotes = document.getElementById('prevInsideNotes');
+            if (prevInsideNotes) prevInsideNotes.innerText = getVal('insideNotes') || '';
+
+            const prevInsideSignature = document.getElementById('prevInsideSignature');
+            if (prevInsideSignature) prevInsideSignature.innerText = getVal('insideSignature') || '';
+
+            const songChk = document.getElementById('includeSongBlock');
+            const songWrapper = document.getElementById('prevSongBlockWrapper');
+            if (songWrapper && songChk) {
+                if (songChk.checked) {
+                    songWrapper.style.display = 'block';
+                    const prevSongTitle = document.getElementById('prevSongTitle');
+                    if (prevSongTitle) prevSongTitle.innerText = getVal('insideSongTitle') || '';
+                    const prevSongSubtitle = document.getElementById('prevSongSubtitle');
+                    if (prevSongSubtitle) prevSongSubtitle.innerText = getVal('insideSongSubtitle') || '';
+                    const prevSongContent = document.getElementById('prevSongContent');
+                    if (prevSongContent) prevSongContent.innerText = getVal('insideSongContent') || '';
+                } else {
+                    songWrapper.style.display = 'none';
+                }
+            }
+
+            updatePreviewWaxSealLook();
+        }
+
+        // Preview Card Interactive Open & Reset
+        let isPreviewOpen = false;
+
+        function handlePreviewCoverClick() {
+            if (isPreviewOpen) return;
+            const cover = document.getElementById('previewCardCover');
+            if (!cover) return;
+            cover.classList.add('is-open');
+            isPreviewOpen = true;
+            const hint = document.getElementById('prevSwipeHint');
+            if (hint) hint.style.display = 'none';
+
+            const effectSound = document.getElementById('effectSound');
+            if (effectSound && effectSound.checked) {
+                playChimeSound();
+            }
+        }
+
+        function resetPreviewCard() {
+            const cover = document.getElementById('previewCardCover');
+            if (!cover) return;
+            cover.classList.remove('is-open');
+            isPreviewOpen = false;
+            const hint = document.getElementById('prevSwipeHint');
+            if (hint) hint.style.display = 'flex';
+        }
+
+        // Soft Audio Synthesis (Pure Web Audio API)
+        function playChimeSound() {
+            try {
+                const ctx = new (window.AudioContext || window.webkitAudioContext)();
+                const now = ctx.currentTime;
+                
+                [523.25, 659.25, 783.99, 1046.50].forEach((freq, idx) => {
+                    const osc = ctx.createOscillator();
+                    const gain = ctx.createGain();
+                    osc.type = 'sine';
+                    osc.frequency.setValueAtTime(freq, now + idx * 0.08);
+
+                    gain.gain.setValueAtTime(0, now + idx * 0.08);
+                    gain.gain.linearRampToValueAtTime(0.2, now + idx * 0.08 + 0.02);
+                    gain.gain.exponentialRampToValueAtTime(0.0001, now + idx * 0.08 + 1.2);
+
+                    osc.connect(gain);
+                    gain.connect(ctx.destination);
+
+                    osc.start(now + idx * 0.08);
+                    osc.stop(now + idx * 0.08 + 1.3);
+                });
+            } catch (e) {}
+        }
+
+        // Presets logic
+        function openPresetsModal() {
+            const m = document.getElementById('presetsModal');
+            if (m) m.classList.remove('hidden');
+        }
+        function closePresetsModal() {
+            const m = document.getElementById('presetsModal');
+            if (m) m.classList.add('hidden');
+        }
+
+        function applyPreset(type) {
+            closePresetsModal();
+            if (type === 'friend') {
+                document.getElementById('coverRecipient').value = 'ليلاس الوردة';
+                document.getElementById('coverGreeting').value = 'السلام عليكم ورحمة الله وبركاته ..';
+                document.getElementById('coverSubtitle').value = 'صديقتي وأخت روحي ليلاس 🤍';
+                state.conditions = ['صلي على النبي ﷺ', 'ادعيلي بظهر الغيب دعوة حلوة', 'اقرأي بروقان وهدوء'];
+                initDefaultBodyContent();
+                const chk = document.getElementById('includeSongBlock');
+                if (chk) chk.checked = true;
+                toggleSongSection();
+            } else if (type === 'celebrate') {
+                document.getElementById('coverRecipient').value = 'أميرتي الجميلة ✨';
+                document.getElementById('coverGreeting').value = 'ألف مبروك من أعماق قلبي ووجداني!';
+                document.getElementById('coverSubtitle').value = 'فخورة بكِ دائماً وأبداً 🎉';
+                state.conditions = ['ابتسمي بأحلى ابتسامة عندك', 'قولي ما شاء الله', 'استمتعي بيومك السعيد'];
+                document.getElementById('insideOpening').value = '.. مباركٌ هذا الإنجاز الذي يليقُ بجمال روحكِ وإصراركِ ..';
+                document.getElementById('insideMainBody').value = 'ألف مبروك يا قمر.. لم تكن فرحتي بأحدٍ كما هي بكِ اليوم!\n\nأعرفُ كم اجتهدتِ وكم سهرتِ وتعبتِ، واليوم يحق لكِ أن تفخري بنفسكِ وبعطائكِ. أنتِ فخرٌ لكل من حولكِ ومصدر إلهام دائم.\n\nأتمنى لكِ دوام النجاح والتألق في كل خطوات حياتكِ القادمة.';
+                document.getElementById('insideBadge').value = '« يومكِ سكر وفرحتكِ فرحتنا كلنا »';
+                document.getElementById('insideSignature').value = 'مع كل فخري ومحبتي الخالصة لكِ 🌸';
+                const chk = document.getElementById('includeSongBlock');
+                if (chk) chk.checked = false;
+                toggleSongSection();
+            } else if (type === 'gratitude') {
+                document.getElementById('coverRecipient').value = 'رفيقة دربي الأغلى 🤍';
+                document.getElementById('coverGreeting').value = 'رسالة شكر وامتنان لا تفي حقكِ';
+                document.getElementById('coverSubtitle').value = 'شكراً لأنكِ أنتِ.. كما أنتِ';
+                state.conditions = ['تذكري كم أنتِ غالية على قلبي', 'صلي على رسول الله', 'كوني مرتاحة البال'];
+                document.getElementById('insideOpening').value = '.. شكراً لكل وقفة صادقة وكلمة طيبة جعلت أيامي أهدأ وأجمل ..';
+                document.getElementById('insideMainBody').value = 'أحببتُ أن أخط لكِ هذه الكلمات لأعبر عن شكري العميق لوجودكِ الصادق في حياتي.\n\nفي كثير من الأيام الصعبة، كانت كلماتكِ وضحكاتكِ هي الملاذ الدافئ لي. الصداقة الحقيقية كنز، وأنتِ أثمن كنز رزقني الله إياه.\n\nشكراً لوقوفكِ بجانبي دوماً بلا تردد.';
+                document.getElementById('insideBadge').value = '« دمتِ لي سنداً ورفيقةً لا تبدلها الأيام »';
+                document.getElementById('insideSignature').value = 'الممتنة لمحبتكِ وصدقكِ دوماً 🤍';
+                const chk = document.getElementById('includeSongBlock');
+                if (chk) chk.checked = false;
+                toggleSongSection();
+            }
+            renderConditionsList();
+            updateLivePreview();
+        }
+
+        // ========================================================
+        // HTML GENERATION ENGINE (GENERATES THE STANDALONE LETTER)
+        // ========================================================
+        function generateStandAloneLetterHtml() {
+            const recipient = document.getElementById('coverRecipient').value.trim() || 'صديقتي';
+            const greeting = document.getElementById('coverGreeting').value.trim() || 'السلام عليكم ورحمة الله ..';
+            const conditionsTitle = document.getElementById('coverConditionsTitle').value.trim() || 'شروط قراءة الرسالة:';
+            const subtitle = document.getElementById('coverSubtitle').value.trim() || 'رسالة خاصة';
+            
+            const insideOpening = document.getElementById('insideOpening').value.trim();
+            const insideMainBody = document.getElementById('insideMainBody').value.trim();
+            const includeSong = document.getElementById('includeSongBlock').checked;
+            const songTitle = document.getElementById('insideSongTitle').value.trim();
+            const songSubtitle = document.getElementById('insideSongSubtitle').value.trim();
+            const songContent = document.getElementById('insideSongContent').value.trim();
+            const insideBadge = document.getElementById('insideBadge').value.trim();
+            const insideNotes = document.getElementById('insideNotes').value.trim();
+            const insideSignature = document.getElementById('insideSignature').value.trim();
+
+            const withPetals = document.getElementById('effectPetals').checked;
+            const withSound = document.getElementById('effectSound').checked;
+
+            let conditionsHtml = '';
+            state.conditions.forEach(c => {
+                conditionsHtml += `
+                    <li class="flex items-center gap-2">
+                        <span class="text-rosegold-500 text-lg">🌸</span>
+                        <span>${escapeHtml(c)}</span>
+                    </li>`;
+            });
+
+            const bodyParagraphs = insideMainBody.split('\n\n').map(p => {
+                const formatted = escapeHtml(p).replace(/\n/g, '<br>');
+                return `<p class="mb-4 leading-relaxed">${formatted}</p>`;
+            }).join('');
+
+            let songBlockHtml = '';
+            if (includeSong && (songTitle || songContent)) {
+                songBlockHtml = `
+                <div class="my-7 bg-gradient-to-b from-rosegold-100 to-pink-50 p-5 rounded-2xl border border-rosegold-200 shadow-xs text-center relative overflow-hidden">
+                    <h3 class="font-bold text-rosegold-700 mb-2 font-marhey text-base">${escapeHtml(songTitle)}</h3>
+                    ${songSubtitle ? `<p class="text-xs text-rosegold-600 mb-3">${escapeHtml(songSubtitle)}</p>` : ''}
+                    <div class="font-medium text-rosegold-800 leading-loose space-y-1.5 text-sm sm:text-base">
+                        ${escapeHtml(songContent).replace(/\n/g, '<br>')}
+                    </div>
+                </div>`;
+            }
+
+            let badgeHtml = '';
+            if (insideBadge) {
+                badgeHtml = `
+                <div class="text-center my-6">
+                    <span class="inline-block px-4 py-2 bg-rosegold-100 text-rosegold-800 rounded-full font-bold shadow-xs text-sm sm:text-base border border-rosegold-200">
+                        ${escapeHtml(insideBadge)}
+                    </span>
+                </div>`;
+            }
+
+            let notesHtml = '';
+            if (insideNotes) {
+                notesHtml = `
+                <div class="bg-pink-100/50 p-4 rounded-xl text-xs sm:text-sm text-gray-700 leading-relaxed mb-6 border border-pink-200/60">
+                    ${escapeHtml(insideNotes).replace(/\n/g, '<br>')}
+                </div>`;
+            }
+
+            let sealGrad = 'radial-gradient(circle at 35% 35%, #de828f, #9e3d4c)';
+            if (state.theme === 'gold') sealGrad = 'radial-gradient(circle at 35% 35%, #ebcb76, #9f7e32)';
+            else if (state.theme === 'ruby') sealGrad = 'radial-gradient(circle at 35% 35%, #e11d48, #6d071a)';
+            else if (state.theme === 'lavender') sealGrad = 'radial-gradient(circle at 35% 35%, #c084fc, #581c87)';
+
+            const sealSvg = getSealSvg(state.sealIcon);
+
+            return `<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>رسالة خاصة إلى ${escapeHtml(recipient)}</title>
+    
+    ${S_SRC_TAILWIND}
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Marhey:wght@400;600;700&family=Tajawal:wght@400;500;700;800&family=Aref+Ruqaa:wght@400;700&display=swap" rel="stylesheet">
+
+    ${S_OPEN}
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Tajawal', 'sans-serif'],
+                        amiri: ['Amiri', 'serif'],
+                        marhey: ['Marhey', 'cursive'],
+                        ruqaa: ['"Aref Ruqaa"', 'serif'],
+                    },
+                    colors: {
+                        rosegold: {
+                            100: '#f9ecec',
+                            200: '#f2d3d3',
+                            300: '#e7b5b5',
+                            400: '#da9292',
+                            500: '#b76e79',
+                            600: '#9e5a63',
+                            700: '#824850',
+                        }
+                    }
+                }
+            }
+        }
+    ${S_CLOSE}
+
+    <style>
+        body {
+            background-color: #fdf2f8;
+            background-image: 
+                radial-gradient(at 0% 0%, rgba(254, 226, 226, 0.7) 0px, transparent 50%),
+                radial-gradient(at 100% 100%, rgba(252, 231, 243, 0.8) 0px, transparent 50%);
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            min-height: 100dvh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            font-family: 'Tajawal', sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .scene {
+            perspective: 1600px;
+            width: 100%;
+            height: 100%;
+            max-width: 440px;
+            max-height: 860px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.75rem;
+            position: relative;
+        }
+
+        .card {
+            width: 100%;
+            height: 94vh;
+            max-height: 800px;
+            position: relative;
+            transform-style: preserve-3d;
+            border-radius: 24px;
+            box-shadow: 0 16px 50px -10px rgba(183, 110, 121, 0.35);
+        }
+
+        .card-inside {
+            position: absolute;
+            inset: 0;
+            background-color: #fffbfa;
+            border: 2px solid #f2d3d3;
+            border-radius: 24px;
+            padding: 1.75rem 1.25rem;
+            overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .card-cover {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, #fff1f3 0%, #fde2e8 50%, #fbcfe8 100%);
+            border: 4px double #da9292;
+            border-radius: 24px;
+            transform-origin: left center;
+            transform-style: preserve-3d;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 10;
+            cursor: pointer;
+            box-shadow: 6px 0 25px rgba(130, 72, 80, 0.18);
+            transition: transform 0.85s cubic-bezier(0.34, 1.25, 0.64, 1);
+            padding: 1.75rem 1.25rem;
+        }
+
+        /* Permanently opened state: NEVER CLOSES AGAIN */
+        .card-cover.is-permanently-open {
+            transform: rotateY(-180deg) !important;
+            pointer-events: none !important;
+        }
+
+        .card-cover::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-color: #fdf7f7;
+            border-radius: 20px;
+            transform: rotateY(180deg) translateZ(1px);
+            backface-visibility: hidden;
+            border: 1px solid #f2d3d3;
+        }
+
+        .wax-seal {
+            width: 74px;
+            height: 74px;
+            border-radius: 50%;
+            background: ${sealGrad};
+            box-shadow: 0 8px 22px rgba(117, 53, 64, 0.4), inset 0 2px 4px rgba(255, 255, 255, 0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+        }
+        .wax-seal-inner {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            border: 1.5px dashed rgba(255, 230, 235, 0.6);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .custom-scroll::-webkit-scrollbar {
+            width: 6px;
+        }
+        .custom-scroll::-webkit-scrollbar-track {
+            background: #fce7f3;
+            border-radius: 10px;
+        }
+        .custom-scroll::-webkit-scrollbar-thumb {
+            background: #da9292;
+            border-radius: 10px;
+        }
+
+        .swipe-hint {
+            animation: pulse-soft 2s infinite;
+        }
+        @keyframes pulse-soft {
+            0%, 100% { transform: translateX(0); opacity: 1; }
+            50% { transform: translateX(-10px); opacity: 0.7; }
+        }
+
+        #petals-canvas {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 50;
+        }
+    </style>
+</head>
+<body class="text-gray-800 selection:bg-rosegold-200 selection:text-rosegold-700">
+
+    ${withPetals ? '<canvas id="petals-canvas"></canvas>' : ''}
+
+    <div class="scene">
+        <div class="card">
+            
+            <!-- THE INSIDE LETTER (Scrollable Content) -->
+            <div class="card-inside custom-scroll text-sm sm:text-base">
+                <div class="max-w-prose mx-auto">
+                    
+                    ${insideOpening ? `
+                    <p class="text-rosegold-700 font-bold font-ruqaa text-base sm:text-lg mb-5 text-center leading-relaxed pb-3 border-b border-rosegold-200">
+                        ${escapeHtml(insideOpening)}
+                    </p>` : ''}
+                    
+                    <!-- Main Body -->
+                    ${bodyParagraphs}
+
+                    <!-- Song / Memory Block -->
+                    ${songBlockHtml}
+
+                    <!-- Centered Badge Quote -->
+                    ${badgeHtml}
+
+                    <!-- Notes -->
+                    ${notesHtml}
+
+                    <!-- Closing Signature -->
+                    ${insideSignature ? `
+                    <div class="my-8 bg-rosegold-50 p-5 rounded-2xl border border-rosegold-200 text-center">
+                        <p class="font-bold text-rosegold-700 text-base sm:text-lg font-ruqaa leading-relaxed">
+                            ${escapeHtml(insideSignature)}
+                        </p>
+                    </div>` : ''}
+
+                    <div class="text-center text-xs text-rosegold-400/80 pb-4">
+                        🤍 صُنع بكل حب وود 🤍
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- THE COVER (Interactive 3D Layer - Never Closes Once Opened) -->
+            <div class="card-cover" id="card-cover">
+                
+                <div class="w-full flex justify-between items-center opacity-45 px-2">
+                    <span class="text-rosegold-600 text-lg">🌸</span>
+                    <span class="text-xs tracking-widest text-rosegold-600 uppercase font-bold">رسالة رقمية خاصة</span>
+                    <span class="text-rosegold-600 text-lg">🌸</span>
+                </div>
+
+                <div class="text-center w-full my-auto px-2">
+                    <h1 class="text-3xl sm:text-4xl font-bold text-rosegold-700 font-marhey mb-3 drop-shadow-xs">${escapeHtml(recipient)}</h1>
+                    <p class="text-sm sm:text-base text-gray-700 font-medium mb-6">${escapeHtml(greeting)}</p>
+                    
+                    <div class="bg-white/70 backdrop-blur-md rounded-2xl p-5 border border-white shadow-xs w-full max-w-[280px] mx-auto text-right">
+                        <h2 class="font-bold text-rosegold-700 mb-3 text-sm border-b border-rosegold-200 pb-2">${escapeHtml(conditionsTitle)}</h2>
+                        <ul class="text-right text-gray-800 space-y-2.5 font-medium text-xs sm:text-sm">
+                            ${conditionsHtml}
+                        </ul>
+                    </div>
+
+                    <p class="mt-6 text-base sm:text-lg font-bold text-rosegold-700 font-marhey">${escapeHtml(subtitle)}</p>
+                </div>
+
+                <div class="flex flex-col items-center gap-3">
+                    <div class="wax-seal" id="interactive-seal">
+                        <div class="wax-seal-inner">
+                            ${sealSvg}
+                        </div>
+                    </div>
+
+                    <div id="swipe-hint" class="swipe-hint bg-rosegold-600/90 text-white px-5 py-2 rounded-full shadow-md flex items-center gap-2 text-xs sm:text-sm font-bold">
+                        <span>اسحبي لليسار أو اضغطي الختم لفتح الرسالة</span>
+                        <span class="text-base">👈</span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    ${S_OPEN}
+        document.addEventListener('DOMContentLoaded', () => {
+            const cover = document.getElementById('card-cover');
+            const seal = document.getElementById('interactive-seal');
+            const hint = document.getElementById('swipe-hint');
+            
+            let isDragging = false;
+            let startX = 0;
+            let currentRotation = 0;
+            let isPermanentlyOpen = false;
+
+            function playOpenSound() {
+                ${withSound ? `
+                try {
+                    const ctx = new (window.AudioContext || window.webkitAudioContext)();
+                    const now = ctx.currentTime;
+                    [523.25, 659.25, 783.99, 1046.50].forEach((freq, idx) => {
+                        const osc = ctx.createOscillator();
+                        const gain = ctx.createGain();
+                        osc.type = 'sine';
+                        osc.frequency.setValueAtTime(freq, now + idx * 0.08);
+                        gain.gain.setValueAtTime(0, now + idx * 0.08);
+                        gain.gain.linearRampToValueAtTime(0.2, now + idx * 0.08 + 0.02);
+                        gain.gain.exponentialRampToValueAtTime(0.0001, now + idx * 0.08 + 1.2);
+                        osc.connect(gain);
+                        gain.connect(ctx.destination);
+                        osc.start(now + idx * 0.08);
+                        osc.stop(now + idx * 0.08 + 1.3);
+                    });
+                } catch(e) {}
+                ` : ''}
+            }
+
+            // CRUCIAL: Opens and NEVER closes again
+            function openLetterPermanently() {
+                if (isPermanentlyOpen) return;
+                isPermanentlyOpen = true;
+
+                cover.style.transition = 'transform 0.85s cubic-bezier(0.34, 1.25, 0.64, 1)';
+                cover.style.transform = 'rotateY(-180deg)';
+                cover.classList.add('is-permanently-open');
+
+                if (hint) hint.style.display = 'none';
+                setTimeout(() => {
+                    cover.style.pointerEvents = 'none';
+                }, 850);
+
+                playOpenSound();
+                ${withPetals ? 'startPetalsAnimation();' : ''}
+            }
+
+            if (seal) {
+                seal.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    openLetterPermanently();
+                });
+            }
+
+            const getX = (e) => e.type.includes('mouse') ? e.pageX : e.touches[0].clientX;
+
+            const onDragStart = (e) => {
+                if (isPermanentlyOpen) return;
+                isDragging = true;
+                startX = getX(e);
+                cover.style.transition = 'none';
+            };
+
+            const onDragMove = (e) => {
+                if (!isDragging || isPermanentlyOpen) return;
+                if (e.cancelable) e.preventDefault();
+                let deltaX = getX(e) - startX;
+                
+                if (deltaX < 0) {
+                    let rotation = Math.min((Math.abs(deltaX) / (window.innerWidth * 0.75)) * 180, 180);
+                    currentRotation = rotation;
+                    cover.style.transform = 'rotateY(-' + currentRotation + 'deg)';
+                }
+            };
+
+            const onDragEnd = () => {
+                if (!isDragging || isPermanentlyOpen) return;
+                isDragging = false;
+                
+                if (currentRotation > 35) {
+                    openLetterPermanently();
+                } else {
+                    cover.style.transition = 'transform 0.5s ease-out';
+                    cover.style.transform = 'rotateY(0deg)';
+                    currentRotation = 0;
+                }
+            };
+
+            cover.addEventListener('touchstart', onDragStart, {passive: false});
+            cover.addEventListener('touchmove', onDragMove, {passive: false});
+            cover.addEventListener('touchend', onDragEnd);
+
+            cover.addEventListener('mousedown', onDragStart);
+            window.addEventListener('mousemove', onDragMove);
+            window.addEventListener('mouseup', onDragEnd);
+
+            ${withPetals ? `
+            function startPetalsAnimation() {
+                const canvas = document.getElementById('petals-canvas');
+                if (!canvas) return;
+                const ctx = canvas.getContext('2d');
+                
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+
+                const petals = [];
+                const totalPetals = 45;
+
+                for (let i = 0; i < totalPetals; i++) {
+                    petals.push({
+                        x: Math.random() * canvas.width,
+                        y: Math.random() * -canvas.height * 0.8,
+                        size: Math.random() * 12 + 10,
+                        speedY: Math.random() * 2 + 1.2,
+                        speedX: Math.random() * 1.5 - 0.75,
+                        rotation: Math.random() * 360,
+                        rotSpeed: Math.random() * 2 - 1,
+                        opacity: Math.random() * 0.6 + 0.35,
+                        color: Math.random() > 0.4 ? '#f4a9b6' : '#e88294'
+                    });
+                }
+
+                let startTime = Date.now();
+
+                function render() {
+                    ctx.clearRect(0, 0, canvas.width, canvas.height);
+                    
+                    petals.forEach(p => {
+                        p.y += p.speedY;
+                        p.x += Math.sin(p.y * 0.02) * 1.2 + p.speedX;
+                        p.rotation += p.rotSpeed;
+
+                        ctx.save();
+                        ctx.translate(p.x, p.y);
+                        ctx.rotate((p.rotation * Math.PI) / 180);
+                        ctx.globalAlpha = p.opacity;
+
+                        ctx.beginPath();
+                        ctx.moveTo(0, 0);
+                        ctx.bezierCurveTo(p.size / 2, -p.size / 2, p.size, 0, 0, p.size * 1.3);
+                        ctx.bezierCurveTo(-p.size, 0, -p.size / 2, -p.size / 2, 0, 0);
+                        ctx.fillStyle = p.color;
+                        ctx.fill();
+                        ctx.restore();
+
+                        if (p.y > canvas.height + 20) {
+                            p.y = -20;
+                            p.x = Math.random() * canvas.width;
+                        }
+                    });
+
+                    if (Date.now() - startTime < 14000) {
+                        requestAnimationFrame(render);
+                    } else {
+                        canvas.remove();
+                    }
+                }
+                render();
+            }
+            ` : ''}
+        });
+    ${S_CLOSE}
+</body>
+</html>`;
+        }
+
+        function escapeHtml(str) {
+            if (!str) return '';
+            return str
+                .replace(/&/g, '&amp;')
+                .replace(/</g, '&lt;')
+                .replace(/>/g, '&gt;')
+                .replace(/"/g, '&quot;')
+                .replace(/'/g, '&#039;');
+        }
+
+        // ========================================================
+        // EXPORT & DOWNLOAD ACTIONS
+        // ========================================================
+        function generateAndExportLetter() {
+            const recipient = document.getElementById('coverRecipient').value.trim() || 'صديقتي';
+            const cleanName = recipient.replace(/[^a-zA-Z0-9\u0600-\u06FF_-]/g, '_');
+            state.lastFileName = `رسالة_خاصة_${cleanName}.html`;
+
+            state.lastGeneratedHtml = generateStandAloneLetterHtml();
+            
+            document.getElementById('generatedFileNameLabel').innerText = state.lastFileName;
+            document.getElementById('exportModal').classList.remove('hidden');
+        }
+
+        function closeExportModal() {
+            document.getElementById('exportModal').classList.add('hidden');
+        }
+
+        function downloadHtmlFileAction() {
+            const blob = new Blob([state.lastGeneratedHtml], { type: 'text/html;charset=utf-8' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = state.lastFileName;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            setTimeout(() => URL.revokeObjectURL(url), 2000);
+        }
+
+        async function shareDirectlyToWhatsApp() {
+            const recipient = document.getElementById('coverRecipient').value.trim() || 'صديقتي';
+            const shareText = `مرحباً يا ${recipient} 🌸 بعثتلك رسالة رقمية تفاعلية خاصة جداً ومصممة بأجمل طابع.. افتحي الملف المرفق بجوجل كروم وشوفي شو كاتبتلك 🤍💌`;
+
+            const blob = new Blob([state.lastGeneratedHtml], { type: 'text/html;charset=utf-8' });
+            const file = new File([blob], state.lastFileName, { type: 'text/html' });
+
+            if (navigator.canShare && navigator.canShare({ files: [file] })) {
+                try {
+                    await navigator.share({
+                        files: [file],
+                        title: `رسالة خاصة إلى ${recipient}`,
+                        text: shareText
+                    });
+                    return;
+                } catch (e) {}
+            }
+
+            downloadHtmlFileAction();
+            const waUrl = `https://api.whatsapp.com/send?text=${encodeURIComponent(shareText)}`;
+            setTimeout(() => {
+                window.open(waUrl, '_blank');
+            }, 500);
+        }
+
+        // Attach all functions to window to guarantee availability in all contexts
+        window.state = state;
+        window.switchTab = switchTab;
+        window.openPresetsModal = openPresetsModal;
+        window.closePresetsModal = closePresetsModal;
+        window.applyPreset = applyPreset;
+        window.addConditionItem = addConditionItem;
+        window.quickAddCondition = quickAddCondition;
+        window.removeConditionItem = removeConditionItem;
+        window.toggleSongSection = toggleSongSection;
+        window.selectTheme = selectTheme;
+        window.selectSealIcon = selectSealIcon;
+        window.updateLivePreview = updateLivePreview;
+        window.resetPreviewCard = resetPreviewCard;
+        window.handlePreviewCoverClick = handlePreviewCoverClick;
+        window.generateAndExportLetter = generateAndExportLetter;
+        window.closeExportModal = closeExportModal;
+        window.downloadHtmlFileAction = downloadHtmlFileAction;
+        window.shareDirectlyToWhatsApp = shareDirectlyToWhatsApp;
+    </script>
+</body>
+</html>
